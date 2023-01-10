@@ -1,0 +1,10 @@
+.box1 {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.box2{
+    width: 100%;
+    border-style: solid;
+    padding: 10px;
+}

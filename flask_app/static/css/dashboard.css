@@ -1,0 +1,26 @@
+
+.content{
+    margin: 0 auto;
+    border-style: solid;
+    height:650px;
+    width: 500px;
+    overflow: auto; 
+    border-radius: 5%;
+    padding: 10px;
+}
+
+.likebutton{
+    height: 30px;
+    width: 30px;
+    border-style: none;
+}
+img{
+    width: 100%;
+    height: 90%;
+    border-radius: 100%;
+}
+.likes{
+    display: flex;
+    justify-content: space space-between;
+    align-items: center;
+}
