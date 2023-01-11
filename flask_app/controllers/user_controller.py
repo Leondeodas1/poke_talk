@@ -25,14 +25,75 @@ def allowed_file(filename):
 @app.route('/home') 
 def dashboard():
     if 'users_id' in session:
+       
         return render_template('dashboard.html',current_user = user.users.get_one({'id': session["users_id"]}),allpost = post.posts.show_posts())
     return redirect('/')
+
+@app.route('/viewpost/<int:id>')
+def showpostbyid(id):
+    if 'users_id' in session:
+        data = {
+            "id" : id
+        }
+        return render_template('view.html',current_user = user.users.get_one({'id': session["users_id"]}),showmypost = post.posts.show_post_by_id(data))
+    return redirect('/')
+
+@app.route('/edit/<int:id>', methods=['get'])
+def get_edit_html(id):
+    if 'users_id' not in session:
+        return redirect('/home')
+    data = {
+        "id": id
+    }
+    return render_template("edit.html",showmypost = post.posts.show_post_by_id(data),current_user = user.users.get_one({'id': session["users_id"]}) )
+
+
+@app.route('/change_sighting/<int:id>', methods=['POST'])
+def edit(id):
+
+	if 'file' not in request.files:
+		flash('No file part')
+		return redirect(request.url)
+	file = request.files['file']
+	if file.filename == '':
+
+		flash('No image selected for uploading')
+		return redirect(request.url)
+	if file and allowed_file(file.filename):
+		filename = secure_filename(file.filename) 
+		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+		print(file.filename)
+		print('upload_image filename: ' + filename)
+		flash('Image successfully uploaded and displayed below')
+		data = {
+        "users_id": request.form['user_id'],
+		"post" :filename,
+        "titleofpost": request.form['titleofpost'],
+        "id":request.form['id']
+		}
+		post.posts.edit(data)
+		print(data)
+		return render_template('edit.html', filename=filename, imageurl = filename,current_user = user.users.get_one({'id': session["users_id"]}))
+	else:
+		flash('Allowed image types are -> png, jpg, jpeg, gif') 
+		return redirect(request.url)
+
+@app.route('/delete/<int:id>', methods = ['get'])
+def delete(id):
+    if 'users_id' not in session:
+        return redirect('/home')
+    data = {
+        "id" :id
+    }
+    post.posts.delete_it(data)
+    return redirect(f'/profile/{id}')
 
 @app.route('/message_app')
 def message_app(): 
     if 'users_id' in session:
         return render_template('message_app.html',current_user = user.users.get_one({'id': session["users_id"]}), all = room.rooms.all_room())
     return redirect('/home')
+
 
 @app.route('/profile/<int:id>')
 def search(id):
@@ -142,4 +203,4 @@ def new_message():
         return redirect('/home')
     message.messages.insert_messages(request.form)
     print(request.form)
-    return redirect("/home")
+    return redirect("/message_app")

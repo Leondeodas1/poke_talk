@@ -32,3 +32,20 @@ class posts:
         results = connectToMySQL(mydb).query_db(query,data)
         print (results)
         return results
+
+    @classmethod
+    def show_post_by_id(cls,data):
+        query = "select * from posts where id= %(id)s"
+        results = connectToMySQL(mydb).query_db(query,data)
+        print (results)
+        return results
+ 
+    @classmethod 
+    def delete_it(cls,data):
+        query = "Delete From posts Where id = %(id)s;"
+        return connectToMySQL(mydb).query_db(query,data)
+
+    @classmethod
+    def edit(cls,data):
+        query = "update posts SET titleofpost=%(titleofpost)s, post=%(post)s, updated_at=NOW() WHERE id =  %(id)s;"
+        return connectToMySQL(mydb).query_db(query, data)
