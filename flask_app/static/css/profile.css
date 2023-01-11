@@ -1,10 +1,12 @@
 .box1 {
-    display: flex; 
-    justify-content: space-between;
+    display: inline-block;
 }
 
 .box2{
-    width: 100%;
+    border-radius: 5%;
+    width: 350px;
     border-style: solid;
     padding: 10px;
+    margin: 10px;
+    height: 400px; 
 }

@@ -11,27 +11,55 @@
         <title>{{all.room_name}}</title>
     {%endfor%}
 </head>
-<body style="padding: 10px;">
-    <header>
-        <h1 style="text-align: center ;">{{one[0].room_name}}</h1>
-        <div style=" display: flex;justify-content: end;">
-        <div>
-            <form action="/logout" method="GET">
-                <button class="btn btn-primary">logout</button>
-            </form>
-            <a href="/homepage" style="color:white; text-decoration: none;">homepage</a>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">Poki talk</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/message_app">Messages</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/create_a_new_post" >
+                        Create Post
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/profile/{{current_user.id}}">Profile</a>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/news">news</a>
+                        
+                    </li>
+                </ul>
+                <ul class="d-flex" role="search">
+                    <form action="/logout" method="GET">
+                        <button class="btn btn-primary">logout</button>
+                    </form> 
+                </ul>
+            </div>
         </div>
-    </header>
-    <div style="display: flex; justify-content: space-between;">
-        <p>
-            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Member List</a>
-        </p>
-        <div class="collapse" id="collapseExample" style="width: 50%;">
-            <div class="card card-body" style="width: 50%; background: #333333; color: white;">
+    </nav>
+    <div class="title_box"> 
+        <h1 class="title">{{one[0].room_name}}</h1>
+    </div>
+
+    <div style="display: flex; margin: 10px; overflow: auto; height: 400px;">
+        <div class="member_box">
+            <div  class="member_list">
+                <p>Member List</p>
                 {%for all in all_chat%}
                 <p>{{all.first_name}} {{all.last_name}}</p>
                 {%endfor%}
-            </div>
+            </div>  
         </div>
         <div class="container">
             <table class="messages" >
@@ -45,13 +73,13 @@
                     {%endfor%}
                 </tbody>
             </table>
-            <form action="/create_message", method="post" style="text-align: center;">
+            <form action="/create_message", method="post" class="form_box">
                 <input type="hidden" name="room_id" value="{{one[0].id}}">
                 <input type="hidden" name="users_id" value="{{current_user.id}}">
                 <div class="press">
                     <div>
                         <label for="message">Message</label>
-                        <input type="text" name="content">
+                        <textarea name="content"  cols="1" rows="1"></textarea>
                     </div>
                     <button>New message</button>
                 </div>

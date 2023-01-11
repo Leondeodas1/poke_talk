@@ -1,12 +1,23 @@
+.title, .title_box, .form_box, .member_list{
+    text-align: center;
+}
+.member_box{
+    width: 25%;
+    text-align: center;
+    border-style: solid;
+    margin:10px; 
+    border-radius: 5%;
+}
+
+
 .container {
     margin: auto;
-    width: 50%;
+    width: 75%;
     padding: 1%;
     border-style: solid;
-    background-color: #333333;
-    border-radius: 2%;
+    margin: 10px;
+    border-radius: 5%;
     overflow-x: auto;
-    color: white;
 }
 .press {
     background-color: grey;
@@ -22,5 +33,5 @@ button {
 }
 .info{
     font-size: small;
-    color: lightblue;
+    color: blue;
 }
