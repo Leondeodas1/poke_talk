@@ -1,0 +1,15 @@
+.pokibook1{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+
+}
+.pokibook2{
+    border-style: solid; 
+}
+.pokibook3{
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+}

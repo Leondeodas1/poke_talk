@@ -6,6 +6,7 @@ from flask_app.models import message
 from flask_app.models import room
 from flask_app.models import post
 from flask_app.models import likes
+from flask_app.models import pokemon
 from datetime import datetime
 from flask_bcrypt import Bcrypt
 import base64
@@ -27,6 +28,13 @@ def dashboard():
     if 'users_id' in session:
        
         return render_template('dashboard.html',current_user = user.users.get_one({'id': session["users_id"]}),allpost = post.posts.show_posts())
+    return redirect('/')
+
+@app.route('/find_poki') 
+def findit():
+    if 'users_id' in session:
+       
+        return render_template('poki.html',current_user = user.users.get_one({'id': session["users_id"]}))
     return redirect('/')
 
 @app.route('/viewpost/<int:id>')
@@ -88,6 +96,15 @@ def delete(id):
     post.posts.delete_it(data)
     return redirect(f'/profile/{id}')
 
+@app.route('/view/<int:id>', methods = ['get'])
+def join(id):
+    if 'users_id' not in session:
+        return redirect('/home')
+    data = {
+        "id" :id
+    }
+    return render_template("view.html",current_user = user.users.get_one({'id': session["users_id"]}),trainerspoki = pokemon.Pokemons.showjoin(data))
+
 @app.route('/message_app')
 def message_app(): 
     if 'users_id' in session:
@@ -107,7 +124,7 @@ def search(id):
 @app.route('/create_a_new_post')
 def new_post(): 
     if 'users_id' in session:
-        return render_template('post.html',current_user = user.users.get_one({'id': session["users_id"]}))
+        return render_template('post.html',current_user = user.users.get_one({'id': session["users_id"]}),all_pokemon=pokemon.Pokemons.show_all_pokemon())
     return redirect('/home')
 
 @app.route('/news') 
@@ -137,7 +154,8 @@ def upload_image():
 		data = {
         "users_id": request.form['user_id'],
 		"post" :filename,
-        "titleofpost": request.form['titleofpost']
+        "titleofpost": request.form['titleofpost'],
+        "pokemon_id":request.form['poke_id']
 		}
 		post.posts.insert_post(data)
 		print(data)
@@ -190,7 +208,7 @@ def get_loginpage_html(id):
     }
     return render_template("room.html", one = room.rooms.get_one_room(data), all_chat = message.messages.show_all_messages(data),current_user = user.users.get_one({'id': session["users_id"]}))
  
-@app.route('/homepage', methods =['get'])
+@app.route('/homepage', methods =['get']) 
 def gohome():
     return redirect('/home')
 

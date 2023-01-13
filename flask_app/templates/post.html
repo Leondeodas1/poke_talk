@@ -62,19 +62,24 @@
         {% endif %} 
     <form method="post" action="/posts" enctype="multipart/form-data">
         <dl>
-        <p>
+        <p> 
             <input type="file" name="file" autocomplete="off" required>
             <label for="titleofpost">Title Of Post</label>
             <input type="text" name="titleofpost">
             <input type="hidden" name="user_id" value="{{current_user.id}}">
             <input type="hidden" name="content" value="{{imageurl}}">
+            <select name="poke_id" >All Pokemon
+                {%for y in all_pokemon%}
+                <option value="{{y.id}}">{{y.name}}</option>
+                {%endfor%}
+            </select>
         </p>
         </dl>
         <p>
         <input type="submit" value="Submit">
         </p>
-
     </form>
+    
     </div>
 
     <!-- <div>

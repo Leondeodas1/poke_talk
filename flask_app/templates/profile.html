@@ -52,7 +52,7 @@
             <input type="hidden" name="user_id" value="{{x.users_id}}">
             <img src="/static/uploads/{{x.post}}/" alt="{{x.titleofpost}}" width="100%" height="70%">
             <p style="width: 100%;">{{x.titleofpost}}</p>
-            <div style="display: flex;justify-content: space-evenly;"><a href="/delete/{{x.id}}" style="border-style: solid; border-color: black;">delete</a> <a href="/edit/{{x.id}}" style="border-style: solid;">edit</a></div>
+            <div style="display: flex;justify-content: space-evenly;"><a href="/view/{{x.id}}" style="border-style: solid;">view</a><a href="/delete/{{x.id}}" style="border-style: solid; border-color: black;">delete</a> <a href="/edit/{{x.id}}" style="border-style: solid;">edit</a></div>
         </div>
     </div>
     {%endfor%} 

@@ -16,7 +16,7 @@ class posts:
   
     @classmethod 
     def insert_post(cls,data):
-        query = "INSERT INTO posts(titleofpost,post, created_at,updated_at,users_id) VALUES (%(titleofpost)s,%(post)s, NOW(), NOW(), %(users_id)s);"
+        query = "INSERT INTO posts(titleofpost,post, created_at,updated_at,users_id,pokemon_id) VALUES (%(titleofpost)s,%(post)s, NOW(), NOW(), %(users_id)s,%(pokemon_id)s);"
         results = connectToMySQL(mydb).query_db(query,data)
         print(results)
         return results
@@ -33,7 +33,7 @@ class posts:
         print (results)
         return results
 
-    @classmethod
+    @classmethod 
     def show_post_by_id(cls,data):
         query = "select * from posts where id= %(id)s"
         results = connectToMySQL(mydb).query_db(query,data)

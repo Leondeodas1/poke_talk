@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/dashboard.css')}}">
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/dashboard.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <!-- <script type="text/javascript" src="{{ url_for('static', filename='javascript/dashboard.js') }}"></script> -->
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/view.css')}}">
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-light" style="height: 25%;">
+    <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">Poki talk</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +36,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/news">news</a>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/find_poki">find poki</a>
+                        
                     </li>
                 </ul>
                 <ul class="d-flex" role="search">
@@ -44,27 +49,20 @@
                     </form> 
                 </ul> 
             </div>
-        </div> 
+        </div>
     </nav>
-    <div class="pokibook1">
-        {%for x in trainerspoki%}
-        <div  class="pokibook2" >
-            <div 
-            class="pokibook3">
-                <img src="/static/uploads/{{x.post}}/" alt="{{x.titleofpost}}" height="100%" width="100%">
-                    <div id="hi" style=" height: 100%;">
-                <p style="width: 100%;">{{x.name}}</p>
-            </div>
-            </div>
-        </div>
-        <div>
-            <button onclick="show(this)" style="width: 100%;">show Pokimon info</button>
-        </div>
-        {%endfor%} 
-        <div id="char"></div>
+    <h1>my favorite pokimon</h1>
+    <input type="text" oninput="search(this)" name="search">
+    <button onclick="show()">show Pokimon</button>
+    <div><p id="hi">snorlax</p></div>
+    
+    <div id="char">
+        <p>this will be where he is at</p>
     </div>
-    <!-- <button onclick="search(this)"></button> -->
-
+    <div id="twitinfo">
+        <p>this will be information from twitter</p> 
+        <button onclick="find()">find user</button>
+    </div>
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/poki.js') }}"></script>
 </body>
 </html>
