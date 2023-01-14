@@ -26,7 +26,7 @@ def register():
             'last_name': request.form['last_name'], 
             'email': request.form['email'],
             'password': pw_hash
-        }
+        } 
     #store the user in session
         session['users_id'] = user.users.save(data)
     # redirect to / home
