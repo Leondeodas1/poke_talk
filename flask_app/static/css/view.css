@@ -1,3 +1,8 @@
+body{
+    font-family: montserrat;
+    background: linear-gradient(120deg,#F9A12EFF,#9B4A97);
+}
+
 .pokibook1{
     display: flex;
     justify-content: space-between;
