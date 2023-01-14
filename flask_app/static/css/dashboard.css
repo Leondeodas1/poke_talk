@@ -1,12 +1,18 @@
 
+body{
+    font-family: montserrat;
+    background: linear-gradient(120deg,#F9A12EFF,#9B4A97);
+}
+
 .content{
     margin: 0 auto;
-    border-style: solid;
+    border-style: solid; 
     height:650px;
     width: 500px;
     overflow: auto; 
     border-radius: 5%;
     padding: 10px;
+    background-color: white;
 }
 
 .likebutton{

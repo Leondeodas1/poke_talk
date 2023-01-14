@@ -31,7 +31,7 @@ def search(id):
         } 
         return render_template('profile.html',current_user = user.users.get_one({'id': session["users_id"]}),showmypost = post.posts.showmypost(data))
     return redirect('/home')
-
+ 
 
 @app.route('/view/<int:id>', methods = ['get'])
 def join(id):
@@ -41,8 +41,6 @@ def join(id):
         "id" :id
     }
     return render_template("view.html",current_user = user.users.get_one({'id': session["users_id"]}),trainerspoki = pokemon.Pokemons.showjoin(data))
-
-
 
 @app.route('/delete/<int:id>', methods = ['get'])
 def delete(id):
