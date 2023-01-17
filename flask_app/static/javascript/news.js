@@ -7,9 +7,8 @@ function search(element) {
     currentUsername = element.value;
 }
 function makecodercard(data) {
-    var arr = [1,2,3,4,5];
     count=0
-    for(var i = 0; i <=data.articles; i++);{
+    for(var i = 0; i <data.articles.length; i++);{
         count += i;{
             console.log(count);
         }
@@ -17,7 +16,7 @@ function makecodercard(data) {
     var res = `<div id="char" style= "border-style: solid;height:100px;width:100%;border-radius: 5%;padding: 10px;">
                     <button"><a href="${data.articles[0].url}" >${data.articles[0].title}</a></button>
                     <p style="font-size: small;">Published At: ${data.articles[0].publishedAt}</p>
-                    <p style="font-size: small;">Published At: ${data.articles}</p>
+                    <p style="font-size: small;">Published At: ${data.articles[0]}</p>
                 </div>`
     return res;
 }

@@ -15,7 +15,7 @@ function makecodercard(data) {
                     <p>Ability Name: ${data.abilities['0'].ability.name}</p>
                 </div>`
     return res;
-}
+} 
 
 async function show(element) {
     var response = await fetch("https://pokeapi.co/api/v2/pokemon/" + currentUsername);
