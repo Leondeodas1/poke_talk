@@ -4,46 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/dashboard.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/message_app.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <title>Messages</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/home">Poki talk</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/message_app">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="/create_a_new_post" >
-                        Create Post
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/profile/{{current_user.id}}">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/news">News</a>
-                    </li> 
-                </ul>
-                <ul class="d-flex" role="search">
-                    <form action="/logout" method="GET">
-                        <button class="btn btn-primary">logout</button>
-                    </form>
-                </ul> 
-            </div>
+    <div class="container" >
+        <div class="navbar" style="width: 40%; ">
+            <a href="/home" class="title" style="color: black; text-decoration: none;">Poke talk</a>
+                <a href="/home"  style="color: black; text-decoration: none;">Home</a >
+
+                <a href="/message_app"  style="color: black; text-decoration: none;">message </a>
+                <a href="/create_a_new_post"  style="color: black; text-decoration: none;">Create Post</a>
+                <a href="/profile/{{current_user.id}}" style="color: black; text-decoration: none;">Profile</a>
+                <a href="/news"  style="color: black; text-decoration: none;">News</a>
         </div>
-    </nav>
+            <div class="header" style="align-items: center;" >
+                <button>logout</button>
+            </div>
+    </div>
     <header style="text-align: center;">
         <h1>Message App</h1>
             <!-- <h1 style="text-align: center ;">{{current_user.first_name}} {{current_user.last_name}}</h1> -->
@@ -75,7 +55,7 @@
                 <table>
                         {%for x in all%}
                         <tr>
-                        <p><a href="/getintoroom/{{x.id}}">{{x.room_name}}</a></p>
+                        <p><a href="/getintoroom/{{x.id}}" style="color: black; text-decoration: none;">{{x.room_name}}</a></p>
                         </tr>
                         {%endfor%}
                 </table>

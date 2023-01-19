@@ -9,41 +9,21 @@
     <title>News</title>
 </head>
 <body> 
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/home">Poki talk</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/message_app">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/create_a_new_post" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Create Post
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        
-                        <a class="nav-link active" href="/profile/{{current_user.id}}">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/news">News</a>
-                    </li> 
-                </ul>
-                <ul class="d-flex" role="search">
-                    <form action="/logout" method="GET">
-                        <button class="btn btn-primary">logout</button>
-                    </form>
-                </ul>
-            </div>
+    <div class="container" >
+        <div class="navbar" style="width: 40%;">
+            <a href="/home" class="title">Poke talk</a>
+                <a href="/home">Home</a >
+                <a href="/message_app">message </a> 
+                <a href="/create_a_new_post" >Create Post</a>
+                <a href="/profile/{{current_user.id}}">Profile</a>
+                <a href="/news">News</a>
         </div>
-    </nav>
+            <div class="header" style="align-items: center;" >
+                <button>logout</button>
+            </div>
+        
+    
+    </div>
     <h1>NEWS</h1>
     <input type="text" oninput="search(this)" name="search">
     <button onclick="show()">Search</button>

@@ -3,7 +3,7 @@ body{
     background: linear-gradient(120deg,#F9A12EFF,#9B4A97);
 }
 
-.container{
+.container{ 
     height: 69px;
     display: flex;
     justify-content: space-between;
