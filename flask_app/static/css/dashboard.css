@@ -1,8 +1,27 @@
-
 body{
     font-family: montserrat;
     background: linear-gradient(120deg,#F9A12EFF,#9B4A97);
 }
+
+.container{
+    height: 69px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.navbar{
+    text-align: center;
+    width: 40%;
+}
+.title{
+    font-size: x-large;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
 
 .content{
     margin: 0 auto;
