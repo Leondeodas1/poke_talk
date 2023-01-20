@@ -47,7 +47,7 @@ def delete(id):
     if 'users_id' not in session:
         return redirect('/home')
     data = {
-        "id" :id
+        "id" :id 
     }
     post.posts.delete_it(data)
     return redirect(f'/profile/{id}')

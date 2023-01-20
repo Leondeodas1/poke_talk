@@ -23,7 +23,7 @@ class Pokemons:
         return results
     @classmethod
     def showjoin(cls,data):
-        query = "select * from posts left join pokemon on pokemon_id = pokemon.id left join users on posts.id where posts.id =%(id)s"
+        query = "select * from pokemon left join posts on posts.pokemon_id = pokemon.id left join users on posts.users_id = users.id where posts.id =%(id)s"
         results = connectToMySQL(mydb).query_db(query,data)
         print (results)
         return results

@@ -12,7 +12,7 @@ body{
 }
 .navbar{
     text-align: center;
-    width: 40%;
+    width: 60%;
 }
 .title{
     font-size: x-large;
@@ -23,26 +23,27 @@ a{
 }
 
 
-.content{
+.content2{
     margin: 0 auto;
     border-style: solid; 
-    height:650px;
+    height:352px;
     width: 500px;
     overflow: auto; 
     border-radius: 5%;
     padding: 10px;
     background-color: white;
+    margin-top: 10px;
 }
 
-.likebutton{
+.likebutton{ 
     height: 30px;
     width: 30px;
     border-style: none;
 }
 img{
-    width: 100%;
-    height: 90%;
-    border-radius: 100%;
+    width: 50%;
+    height: 100%;
+    border-radius: 5%;
 } 
 .likes{
     display: flex;

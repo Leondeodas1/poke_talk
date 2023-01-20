@@ -18,9 +18,11 @@
                 <a href="/profile/{{current_user.id}}">Profile</a>
                 <a href="/news">News</a>
         </div>
-            <div class="header" style="align-items: center;" >
+        <div class="header" style="align-items: center;" >
+            <form action="/logout" method="Get">
                 <button>logout</button>
-            </div>
+            </form>
+        </div>
         
     
     </div>
@@ -29,10 +31,10 @@
         <h1>All Post</h1>
     {%for x in showmypost%}
     <div class="box1">
-        <div class="box2">
+        <div class="box2"> 
             <input type="hidden" name="user_id" value="{{x.users_id}}">
             <img src="/static/uploads/{{x.post}}/" alt="{{x.titleofpost}}" width="100%" height="70%">
-            <p style="width: 100%;">{{x.titleofpost}}</p>
+            <p style="width: 100%; height: 30px;">{{x.titleofpost}}</p>
             <div style="display: flex;justify-content: space-evenly;"><a href="/view/{{x.id}}" style="border-style: solid;">view</a><a href="/delete/{{x.id}}" style="border-style: solid; border-color: black;">delete</a> <a href="/edit/{{x.id}}" style="border-style: solid;">edit</a></div>
         </div>
     </div>
