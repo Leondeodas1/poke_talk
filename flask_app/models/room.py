@@ -32,7 +32,7 @@ class rooms:
         query = "INSERT INTO room(room_name,passcode, created_at,updated_at,user_id) VALUES (%(room_name)s,%(passcode)s, NOW(), NOW(), %(users_id)s );"
         return connectToMySQL(mydb).query_db(query,data)
 
-
+ 
     @classmethod
     def all_room(cls):
         query = "select * from room;"
@@ -40,7 +40,7 @@ class rooms:
             
         all = []
             
-        for rams in results:
+        for rams in results: 
             all.append( cls(rams) )
         return all
 

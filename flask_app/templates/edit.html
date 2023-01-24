@@ -55,7 +55,7 @@
         </ul>
         {% endif %}
         {% endwith %}
-        </p>
+        </p>  
         {% if filename %}
         <div> 
             <img src="{{ url_for('display_image', filename=filename) }}" style="width: 100px; height: 200px;">
@@ -68,15 +68,20 @@
             <input type="file" name="file" autocomplete="off" required>
             <label for="titleofpost">Title Of Post</label>
             <input type="text" name="titleofpost" value="{{x.titleofpost}}">
-            <input type="hidden" name="user_id" value="{{current_user.id}}">
+            <input type="hidden" name="users_id" value="{{current_user.id}}">
             <input type="hidden" name="id" value="{{x.id}}">
             <input type="hidden" name="content" value="{{imageurl}}">
-            
+            <select name="pokemon_id" >All Pokemon
+                {%for y in all_pokemon%}
+                <option value="{{y.id}}">{{y.name}}</option>
+                {%endfor%}
+            </select>
+
         </p>
         </dl>
-        <p>
+        <p> 
         <input type="submit" value="Submit">
-        </p>
+        </p> 
 
     </form>
     {%endfor%}

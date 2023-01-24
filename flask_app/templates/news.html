@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/news.css')}}">
     <title>News</title>
 </head>
-<body> 
+<body>
+
     <div class="container" >
         <div class="navbar" style="width: 40%;">
             <a href="/home" class="title">Poke talk</a>
@@ -20,12 +21,13 @@
         </div>
         <div class="header" style="align-items: center;" >
             <form action="/logout" method="Get">
-            <button>logout</button>
+            <button style="border-radius: 8px; background-color:#008CBA ; ">logout</button>
         </form>
         </div>
         
     
-    </div>
+    </div> 
+    
     <h1>NEWS</h1>
     <input type="text" oninput="search(this)" name="search">
     <button onclick="show()">Search</button>
@@ -33,6 +35,22 @@
     <div id="char">
         <p>this will be where he is at</p>
     </div>
+<div style="height: 500px;">
+    <h1 class="text-center">news</h1>
+    <div class="tin">
+        <table class="table table-bordered">
+
+            <tbody id="table_body">
+              <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+ 
+            </tbody>
+          </table>
+    </div>
+  </div>
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/news.js') }}"></script>
 </body>
 </html>

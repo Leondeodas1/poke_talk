@@ -39,22 +39,26 @@ def insideroom():
 
 
 @app.route('/getintoroom/<int:id>', methods=['get'])
-def get_loginpage_html(id):
+def get_loginpage_html(id): 
     if 'users_id' not in session:
         if 'room_id' not in session: 
-            return redirect('/home')
+            return redirect('/home') 
     data = {
         "id": id
     }
     return render_template("room.html", one = room.rooms.get_one_room(data), all_chat = message.messages.show_all_messages(data),current_user = user.users.get_one({'id': session["users_id"]}))
 
-@app.route('/create_message', methods =['post'])
-def new_message():
+@app.route('/create_message/<int:message_id>', methods =['post'])
+def new_message(message_id):
     if 'users_id' not in session:
         return redirect('/home')
     if not message.messages.validate_message(request.form):
         return redirect('/home')
+    data = {
+        "id" : message_id
+    }
+    print(data)
     message.messages.insert_messages(request.form)
     print(request.form)
-    return redirect("/message_app")
+    return redirect(f"/getintoroom/{message_id}")
  

@@ -4,7 +4,7 @@ from flask import render_template,request, redirect,session,flash,url_for
 from flask_app.models import user
 from flask_app.models import message
 from flask_app.models import room
-from flask_app.models import post
+from flask_app.models import post 
 from flask_app.models import likes
 from flask_app.models import pokemon
 from datetime import datetime
@@ -31,14 +31,15 @@ def new_post():
 @app.route('/posts', methods=['POST'])
 def upload_image():
 
-	if 'file' not in request.files:
+	if 'file' not in request.files: 
 		flash('No file part')
-		return redirect(request.url)
+	if not post.posts.validate_post(request.form):
+	
+		return redirect('/create_a_new_post')
 	file = request.files['file']
-	if file.filename == '':
-
+	if file.filename == '': 
 		flash('No image selected for uploading')
-		return redirect(request.url)
+		return redirect(request.url) 
 	if file and allowed_file(file.filename):
 		filename = secure_filename(file.filename) 
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -46,13 +47,14 @@ def upload_image():
 		print('upload_image filename: ' + filename)
 		flash('Image successfully uploaded and displayed below')
 		data = {
-        "users_id": request.form['user_id'],
+        "users_id": request.form['users_id'], 
 		"post" :filename,
         "titleofpost": request.form['titleofpost'],
-        "pokemon_id":request.form['poke_id']
+        "pokemon_id":request.form['pokemon_id']
 		}
 		post.posts.insert_post(data)
-		print(data)
+		print(file.filename, "this is the file name")
+	
 		return render_template('post.html', filename=filename, imageurl = filename,current_user = user.users.get_one({'id': session["users_id"]}))
 	else:
 		flash('Allowed image types are -> png, jpg, jpeg, gif') 

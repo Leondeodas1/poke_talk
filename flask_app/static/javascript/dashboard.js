@@ -7,3 +7,4 @@ function press(){
     console.log(count);
 }
 press();
+

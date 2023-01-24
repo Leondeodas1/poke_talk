@@ -3,7 +3,7 @@ from flask import flash
 import re
 EMAIL_REGEX = re.compile('^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 mydb = 'poke_social_media'
- 
+  
 class messages:
     def __init__( self , data ):
         self.id = data['id']

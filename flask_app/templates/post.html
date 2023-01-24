@@ -20,19 +20,19 @@
         </div>
         <div class="header" style="align-items: center;" >
             <form action="/logout" method="Get">
-            <button>logout</button>
+            <button style="border-radius: 8px; background-color:#008CBA ; ">logout</button>
         </form>
         </div>
     </div>
-    <div style="border-style: solid; width: 50%; margin: 0 auto;">
+    <div class="nice"style="border-style: solid; width: 50%; margin: 0 auto;">
         <h2>Select a file to upload</h2>
         <p>
-        {% with messages = get_flashed_messages() %}
+        {% with messages = get_flashed_messages() %} 
         {% if messages %}
         <ul>
         {% for message in messages %}
             <li>{{ message }}</li>
-        {% endfor %} 
+        {% endfor %}  
         </ul>
         {% endif %}
         {% endwith %}
@@ -44,15 +44,19 @@
         {% endif %} 
     <form method="post" action="/posts" enctype="multipart/form-data">
         <dl>
-        <p> 
-            <input type="file" name="file" autocomplete="off" required>
-            <label for="titleofpost">Title Of Post</label>
-            <input type="text" name="titleofpost">
-            <input type="hidden" name="user_id" value="{{current_user.id}}">
+        <p>
+        <div class="mb-3">
+            <input type="file" name="file" autocomplete="off" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="titleofpost" class="form-label">Title Of Post</label>
+            <input type="text" name="titleofpost" class="form-control">
+        </div>
+            <input type="hidden" name="users_id" value="{{current_user.id}}">
             <input type="hidden" name="content" value="{{imageurl}}">
-            <select name="poke_id" >All Pokemon
+            <select name="pokemon_id" class="form-label">All Pokemon
                 {%for y in all_pokemon%}
-                <option value="{{y.id}}">{{y.name}}</option>
+                <option value="{{y.id}}" class="form-control">{{y.name}}</option>
                 {%endfor%}
             </select>
         </p>

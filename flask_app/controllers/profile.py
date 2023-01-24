@@ -42,15 +42,16 @@ def join(id):
     }
     return render_template("view.html",current_user = user.users.get_one({'id': session["users_id"]}),trainerspoki = pokemon.Pokemons.showjoin(data))
 
-@app.route('/delete/<int:id>', methods = ['get'])
-def delete(id):
+@app.route('/delete/<int:id>/<int:users_id>', methods = ['get'])
+def delete(id,users_id):
     if 'users_id' not in session:
         return redirect('/home')
     data = {
-        "id" :id 
+        "id" :id
     }
+    print(users_id)
     post.posts.delete_it(data)
-    return redirect(f'/profile/{id}')
+    return redirect(f'/profile/{users_id}') 
 
 @app.route('/edit/<int:id>', methods=['get'])
 def get_edit_html(id):
@@ -59,7 +60,7 @@ def get_edit_html(id):
     data = {
         "id": id
     }
-    return render_template("edit.html",showmypost = post.posts.show_post_by_id(data),current_user = user.users.get_one({'id': session["users_id"]}) )
+    return render_template("edit.html",showmypost = post.posts.show_post_by_id(data),current_user = user.users.get_one({'id': session["users_id"]}),all_pokemon=pokemon.Pokemons.show_all_pokemon(), trainerspoki = pokemon.Pokemons.showjoin(data) )
 
 
 @app.route('/change_sighting/<int:id>', methods=['POST'])
@@ -67,7 +68,8 @@ def edit(id):
 
 	if 'file' not in request.files:
 		flash('No file part')
-		return redirect(request.url)
+	if not post.posts.validate_post(request.form):
+		return redirect(f'/edit/{id}')
 	file = request.files['file']
 	if file.filename == '':
 
@@ -80,13 +82,14 @@ def edit(id):
 		print('upload_image filename: ' + filename)
 		flash('Image successfully uploaded and displayed below')
 		data = {
-        "users_id": request.form['user_id'],
+        "users_id": request.form['users_id'],
 		"post" :filename,
         "titleofpost": request.form['titleofpost'],
-        "id":request.form['id']
+        "pokemon_id":request.form['pokemon_id'],
+        "id": request.form['id']
 		}
 		post.posts.edit(data)
-		print(data)
+		print(data["users_id"], "this is data")
 		return render_template('edit.html', filename=filename, imageurl = filename,current_user = user.users.get_one({'id': session["users_id"]}))
 	else:
 		flash('Allowed image types are -> png, jpg, jpeg, gif') 
