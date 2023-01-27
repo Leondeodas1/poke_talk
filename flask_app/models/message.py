@@ -15,14 +15,14 @@ class messages:
     def validate_message(request):
         is_valid = True
         if len(request['content']) < 2:
-            flash("please Enter A room name")
+            flash("please Enter A message")
             is_valid = False
         elif len(request['content']) < 3:
-            flash("room Name must be longer than two characters",)
+            flash("message must be longer",)
             is_valid = False 
         return is_valid 
 
-
+ 
 
     @classmethod 
     def insert_messages(cls,data):

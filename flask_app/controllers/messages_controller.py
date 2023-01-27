@@ -30,7 +30,7 @@ def insideroom():
             'users_id' : session['users_id'],
             'passcode': pc_hash
             
-        }
+        } 
         print(data)
         session['room_id']=room.rooms.insert_room(data)
         print(session)
@@ -50,13 +50,14 @@ def get_loginpage_html(id):
 
 @app.route('/create_message/<int:message_id>', methods =['post'])
 def new_message(message_id):
+    data = {
+        "id" : message_id
+    } 
     if 'users_id' not in session:
         return redirect('/home')
     if not message.messages.validate_message(request.form):
-        return redirect('/home')
-    data = {
-        "id" : message_id
-    }
+        return redirect(f'/getintoroom/{message_id}')
+
     print(data)
     message.messages.insert_messages(request.form)
     print(request.form)

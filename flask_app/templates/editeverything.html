@@ -6,66 +6,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/post.css')}}">
-    <title>Post</title>
+    <title>Document</title>
 </head>
 <body>
+    
     <div class="container" >
         <div class="navbar" style="width: 40%;">
             <a href="/home" class="title">Poke talk</a>
                 <a href="/home">Home</a >
-                <a href="/message_app">message </a> 
+                <a href="/message_app">message </a>
                 <a href="/create_a_new_post" >Create Post</a>
                 <a href="/profile/{{current_user.id}}">Profile</a>
                 <a href="/news">News</a>
         </div>
         <div class="header" style="align-items: center;" >
             <form action="/logout" method="Get">
-            <button style="border-radius: 8px; background-color:#008CBA ; ">logout</button>
-        </form>
+                <button style="border-radius: 8px; background-color:#008CBA ; ">logout</button>
+            </form>
         </div>
+        
+    
     </div>
-    <div class="nice"style="border-style: solid; width: 50%; margin: 0 auto;background-color: blanchedalmond;">
-        <h2>Select a file to upload</h2>
+<div>
+    <div class="nice" style="border-style: solid; width: 50%; margin: 0 auto;background-color: blanchedalmond; ">
+        <h2>Edit Everything</h2>
         <p>
-        {% with messages = get_flashed_messages() %} 
+        {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
         {% for message in messages %}
             <li>{{ message }}</li>
-        {% endfor %}  
+        {% endfor %} 
         </ul>
         {% endif %}
         {% endwith %}
-        </p>
+        </p>  
         {% if filename %}
         <div> 
             <img src="{{ url_for('display_image', filename=filename) }}" style="width: 100px; height: 200px;">
-        </div>
-        {% endif %} 
-    <form method="post" action="/posts" enctype="multipart/form-data">
-        <dl>
+        </div> 
+        {% endif %}
+        {%for x in showmypost%} 
+    <form method="post" action="/change_everything/{{x.id}}" enctype="multipart/form-data" >
+        <dl> 
         <p>
-        <div class="mb-3">
-            <input type="file" name="file" autocomplete="off" required class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="titleofpost" class="form-label">Title Of Post</label>
-            <input type="text" name="titleofpost" class="form-control">
-        </div>
+            <div class="mb-3">
+                <p><em>*Will Accept Webp files</em></p>
+                <p>{{x.post}}</p>
+                
+                <input type="file"  name="file"  required class="form-label" >
+                <script>
+                    
+                    const fileInput = document.querySelector('input[type="file"]');
+                
+                    
+                    const myFile = new File(['Hello World!'], '{{x.post}}', {
+                        type: 'image/jpeg',
+                        lastModified: new Date(),
+                    });
+                 
+                    
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(myFile);
+                    fileInput.files = dataTransfer.files;
+                    console.log(myFile)
+                </script>
+
+            </div>
+            <div class="mb-3">
+                <label for="titleofpost" class="form-label">Title Of Post</label>
+                <input type="text" name="titleofpost" value="{{x.titleofpost}}"  class="form-control">
+            </div>
             <input type="hidden" name="users_id" value="{{current_user.id}}">
-            <input type="hidden" name="content" value="{{imageurl}}">
+            <input type="hidden" name="id" value="{{x.id}}">
+            <input type="hidden" name="content" value="{{imageurl}}"> 
             <select name="pokemon_id" class="form-label">All Pokemon
+                <option value="{{x.pokemon_id}}">Current {{x.name}}</option>
                 {%for y in all_pokemon%}
-                <option value="{{y.id}}" class="form-control">{{y.name}}</option>
+                <option value="{{y.id}}"  class="form-control">{{y.name}}</option>
                 {%endfor%}
             </select>
+
         </p>
         </dl>
-        <p>
+        <p> 
         <input type="submit" value="Submit">
-        </p>
+        </p> 
+
     </form>
-    
+    {%endfor%}
     </div>
 
     <!-- <div>
@@ -90,6 +119,8 @@
             {%endfor%}
         </tbody>
     </table> -->
+
+</div>
     
 </body>
 </html>

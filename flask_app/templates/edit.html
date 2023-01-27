@@ -7,108 +7,82 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/post.css')}}">
     <title>Post</title>
+
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/home">Poki talk</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/message_app">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/create_a_new_post" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Create Post
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/profile/{{current_user.id}}">Profile</a>
-                    </li> 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/news">news</a>
-                    </li>
-                </ul>
-                <ul class="d-flex" role="search">
-                    <form action="/logout" method="GET">
-                        <button class="btn btn-primary">logout</button>
-                    </form>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div style="border-style: solid; width: 50%; margin: 0 auto;">
-        <h2>Select a file to upload</h2>
-        <p>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %} 
-        </ul>
-        {% endif %}
-        {% endwith %}
-        </p>  
-        {% if filename %}
-        <div> 
-            <img src="{{ url_for('display_image', filename=filename) }}" style="width: 100px; height: 200px;">
-        </div>
-        {% endif %}
-        {%for x in showmypost%} 
-    <form method="post" action="/change_sighting/{{x.id}}" enctype="multipart/form-data">
-        <dl>
-        <p>    
-            <input type="file" name="file" autocomplete="off" required>
-            <label for="titleofpost">Title Of Post</label>
-            <input type="text" name="titleofpost" value="{{x.titleofpost}}">
-            <input type="hidden" name="users_id" value="{{current_user.id}}">
-            <input type="hidden" name="id" value="{{x.id}}">
-            <input type="hidden" name="content" value="{{imageurl}}">
-            <select name="pokemon_id" >All Pokemon
-                {%for y in all_pokemon%}
-                <option value="{{y.id}}">{{y.name}}</option>
-                {%endfor%}
-            </select>
-
-        </p>
-        </dl>
-        <p> 
-        <input type="submit" value="Submit">
-        </p> 
-
-    </form>
-    {%endfor%}
-    </div>
-
-    <!-- <div>
-        <form action="/posts" method="post"> 
-            <input type="hidden" name="users_id" value="{{current_user.id}}">
-            <label for="titleofpost">Title</label>
-        <input type="text" name="titleofpost" >
-        <label for="post">post</label>
-        <input type="file" name="post">
-        <button>Create Post</button>
-
-        </form>
-    </div>
-    <table class="posts" >
-        <h4>All Posts</h4>
-        <tbody > 
-            {% for chat in all_posts%}
-            <tr>
-                <p class="info">{{chat.titleofpost}}</p>
-                <p class="info"><img src="{{chat.post}}" alt=""></p>
-            </tr>
-            {%endfor%}
-        </tbody>
-    </table> -->
     
+    <div class="container" >
+        <div class="navbar" style="width: 40%;">
+            <a href="/home" class="title">Poke talk</a>
+                <a href="/home">Home</a >
+                <a href="/message_app">message </a>
+                <a href="/create_a_new_post" >Create Post</a>
+                <a href="/profile/{{current_user.id}}">Profile</a>
+                <a href="/news">News</a>
+        </div>
+        <div class="header" style="align-items: center;" >
+            <form action="/logout" method="Get">
+                <button style="border-radius: 8px; background-color:#008CBA ; ">logout</button>
+            </form>
+        </div>
+        
+    
+    </div>
+<div>
+    <div style="display:flex">
+        <div class="nice" style="border-style: solid; width: 50%; margin: 0 auto;background-color: blanchedalmond;">
+            <h2>Select a file to upload</h2>
+            <p>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %} 
+            </ul>
+            {% endif %}
+            {% endwith %}
+            </p>  
+            {% if filename %}
+            <div> 
+                <img src="{{ url_for('display_image', filename=filename) }}" style="width: 100px; height: 200px;">
+            </div> 
+            {% endif %}
+            {%for x in showmypost%} 
+        <form method="post" action="/change_sighting/{{x.id}}/{{x.users_id}}" enctype="multipart/form-data">
+            <dl> 
+            <p>
+                <div class="mb-3">
+                    <label for="titleofpost" class="form-label">Title Of Post</label>
+                    <input type="text" name="titleofpost" value="{{x.titleofpost}}"  class="form-control">
+                </div>
+                <input type="hidden" name="users_id" value="{{current_user.id}}">
+                <input type="hidden" name="id" value="{{x.id}}">
+                <input type="hidden" name="content" value="{{imageurl}}"> 
+                <input type="hidden" name="post" value="{{x.post}}"> 
+                <select name="pokemon_id" class="form-label">All Pokemon
+                    <option value="{{x.pokemon_id}}">Current {{x.name}}</option>
+                    {%for y in all_pokemon%}
+                    <option value="{{y.id}}"  class="form-control">{{y.name}}</option>
+                    {%endfor%}
+                </select>
+    
+            </p>
+            </dl>
+            <p> 
+            <input type="submit" value="Submit">
+            </p> 
+    
+        </form>
+        {%endfor%}
+        </div>
+
+
+
+<!-- this is the part will change everyhting -->
+
+
+        
 </body>
 </html>

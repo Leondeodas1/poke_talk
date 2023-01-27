@@ -6,9 +6,9 @@ var currentUsername = my.innerText;
 
 function makecodercard(data) { 
     var res = `<div class="card">
-                    <img src="${data.sprites.back_shiny}" alt="${data.sprites.back_shiny}" style="width:100px; height: 100px;">
-                    <img src="${data.sprites.front_shiny}" alt="${data.sprites.front_shiny}" style="width:100px; height: 100px;">
-                    <h3>${data.name} - ${data.species}</h3>
+                    <img src="${data.sprites.front_default}" alt="${data.sprites.front_default}" style="width:100px; height: 100px;">
+                    <img src="${data.sprites.back_default}" alt="${data.sprites.back_default}" style="width:100px; height: 100px;">
+                    <h3>${data.name}</h3>
                     <p>height: ${data.height}</p>
                     <p>weight: ${data.weight}</p>
                     <p>species: ${data.species.url}</p>

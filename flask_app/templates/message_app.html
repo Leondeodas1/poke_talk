@@ -33,7 +33,7 @@
   
         </header>
         <div style="display: flex; justify-content: space-evenly;">
-            <div class="nice" style="border-style: solid; border-radius: 5px;"> 
+            <div class="nice" style="border-style: solid; border-radius: 5px; background-color: blanchedalmond;"> 
                
                 <form action="/create_room" method="Post">
                     {% with messages = get_flashed_messages() %}
@@ -52,13 +52,13 @@
                         <div class="mb-3">
                             <label for="password" class="form-label" >passcode</label>
                             <input type="password" name="passcode" class="form-control">
-                        </div>
+                        </div> 
                         
                         <input type="checkbox" onclick="disappear()" class="color" style="color: white;"> Show Password
                         <button class="btn btn-warning">create a room</button>
-                </form>
+                </form> 
             </div>
-            <div class="roomop">
+            <div class="roomop"style="background-color: blanchedalmond;" >
                 <table>
                         {%for x in all%}
                         <tr>

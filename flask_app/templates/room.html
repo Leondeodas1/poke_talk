@@ -31,35 +31,43 @@
         <h1 class="title">{{one[0].room_name}}</h1>
     </div>
 
-    <div style="display: flex; margin: 10px; overflow: auto; height: 400px;">
-        <div class="member_box">
-            <div  class="member_list">
+    <div style="display: flex; margin: 10px; overflow: auto; height: 400px; ">
+        <div class="member_box" style="background-color: blanchedalmond;">
+            <div  class="member_list" >
                 <p>Member List</p>
                 {%for all in all_chat%}
                 <p>{{all.first_name}}</p>
                 {%endfor%}
             </div>  
         </div>
-        <div class="container2">
+        <div class="container2" style="background-color: blanchedalmond;" >
             <table class="messages" >
                 <h4>All Messages</h4>
                 <tbody > 
                     {% for chat in all_chat%}
                     <tr>
                         <p class="info">{{chat.first_name}} - {{chat.created_at.strftime ("%B %#d %Y")}}</p>
-                        <p>{{chat.content}}</p>
+                        <p>{{chat.content}} </p>
+                        
 
                     </tr>
                     {%endfor%}
                 </tbody>
-            </table>
+            </table>{% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: red;">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <form action="/create_message/{{one[0].id}}", method="post" class="form_box">
+                
                 <input type="hidden" name="room_id" value="{{one[0].id}}">
                 <input type="hidden" name="users_id" value="{{current_user.id}}">
                 <div class="press">
                     <div>
                         <label for="message">Message</label>
-                        <textarea name="content"  cols="50" rows="1"></textarea>
+                        <textarea name="content"  cols="80" rows="1"></textarea>
                     </div> 
                     <button style="border-radius: 8px; background-color:#008CBA ; ">New message</button>
                 </div>
