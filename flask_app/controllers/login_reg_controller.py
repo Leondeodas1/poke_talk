@@ -11,7 +11,14 @@ dateFormat = "%m/%d/%Y %I:%M %p"
 @app.route('/') 
 def index():
     return render_template('index.html') 
-    
+
+@app.route('/getsignin')
+def getsignin():
+    return render_template('login.html')
+
+@app.route('/getregister')
+def getregister():
+    return redirect('/')
 @app.route('/register', methods = ['POST'])
 def register():
         #validate user input

@@ -46,7 +46,7 @@ def join(id):
 def delete(id,users_id):
     if 'users_id' not in session:
         return redirect('/home')
-    data = {
+    data = { 
         "id" :id
     }
     print(users_id)

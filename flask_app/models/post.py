@@ -25,7 +25,7 @@ class posts:
             is_valid = False
         return is_valid
 
-
+ 
     @classmethod 
     def insert_post(cls,data):
         query = "INSERT INTO posts(titleofpost,post, created_at,updated_at,users_id,pokemon_id) VALUES (%(titleofpost)s,%(post)s, NOW(), NOW(), %(users_id)s,%(pokemon_id)s);"

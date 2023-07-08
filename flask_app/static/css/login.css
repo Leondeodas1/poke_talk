@@ -1,8 +1,8 @@
 body{
     margin: 0;
     padding: 0;
-    font-family: montserrat;
-    background: linear-gradient(120deg,#2980b9,#8e44ad);
+        font-family: montserrat;
+        background: linear-gradient(120deg,#F9A12EFF,#9B4A97);
 }
 
 .container{
@@ -16,8 +16,8 @@ body{
 } 
 form{
     margin: 0, auto;
-    background-color: #34393E; 
-    color: white;
+    background-color:blanchedalmond; 
+    color: black;
     width: 350px;
     height: 600px;
     padding: 20px;

@@ -37,7 +37,7 @@ def upload_image():
 	
 		return redirect('/create_a_new_post')
 	file = request.files['file']
-	if file.filename == '': 
+	if file.filename == '':  
 		flash('No image selected for uploading')
 		return redirect(request.url) 
 	if file and allowed_file(file.filename):

@@ -30,6 +30,7 @@ def dashboard():
         return render_template('dashboard.html',current_user = user.users.get_one({'id': session["users_id"]}),allpost = post.posts.show_posts())
     return redirect('/')
 
+
 @app.route('/news') 
 def news():
     if 'users_id' in session:
