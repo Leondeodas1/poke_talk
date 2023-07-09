@@ -21,6 +21,11 @@
                 <a href="/news"  style="color: black; text-decoration: none;">News</a>
         </div>
         <div class="header" style="align-items: center;" >
+            <form action="/getnews" method="post">
+                <input type="hidden" name="users_id" value="{{current_user.id}}">
+                <input type="text" name="newstext">
+            <button onclick="sendData()">Send Data</button>
+            </form>
             <form action="/logout" method="Get">
             <button style="border-radius: 8px; background-color:#008CBA ; ">logout</button>
         </form>

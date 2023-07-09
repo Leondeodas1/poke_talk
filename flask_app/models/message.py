@@ -10,7 +10,7 @@ class messages:
         self.content = data['content']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at'] 
-
+ 
     @staticmethod
     def validate_message(request):
         is_valid = True

@@ -19,9 +19,13 @@
                 <a href="/message_app">message </a>
                 <a href="/create_a_new_post" >Create Post</a>
                 <a href="/profile/{{current_user.id}}">Profile</a>
-                <a href="/news">News</a>
         </div>
         <div class="header" style="align-items: center;" >
+            <form action="/getnews" method="post">
+                <input type="hidden" name="users_id" value="{{current_user.id}}">
+                <input type="text" name="newstext">
+            <button onclick="sendData()">Send Data</button>
+            </form>
             <form action="/logout" method="Get">
                 <button style="border-radius: 8px; background-color:#008CBA ; ">logout</button>
             </form>

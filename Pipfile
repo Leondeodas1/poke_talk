@@ -7,6 +7,8 @@ name = "pypi"
 flask = "*"
 pymysql = "*"
 flask-bcrypt = "*"
+beautifulsoup4 = "*"
+google = "*"
 
 [dev-packages]
 
